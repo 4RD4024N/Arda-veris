@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>İletişim</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            height: 50px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            height: calc(100% - 50px); /* Navbar'ın altında başlasın */
+            width: 200px;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar .auth-buttons {
+            position: absolute;
+            bottom: 20px;
+            width: 95%;
+        }
+
+        .sidebar .auth-buttons a,
+        .sidebar .auth-buttons form button {
+            display: block;
+            width: calc(100% - 30px);
+            margin: 5px 15px;
+            text-align: center;
+            background-color: #7aade7;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .auth-buttons a:hover,
+        .sidebar .auth-buttons form button:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100% - 50px);
+        }
+
+        .contact-info {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Arda-veriş</h1>
+    <a href="/sepet">Sepetim</a>
+</div>
+
+<div class="sidebar">
+    <a href="/index">Ana sayfa</a>
+    <a href="/urunler">Ürünler</a>
+    <a href="/iletisim">İletişim</a>
+    <div class="auth-buttons">
+        <div th:if="${session.username == null}">
+            <a href="/uye">Login</a>
+            <a href="/uye">Register</a>
+        </div>
+        <div th:if="${session.username != null}">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="contact-info">
+        <h2>İletişim Bilgileri</h2>
+        <p>Adres: Ankara Çankaya 1453, ankara, TURKİYE</p>
+        <p>Telefon: +90 123 456 78 90</p>
+        <p>Email: bilgi@arda-veris.com</p>
+    </div>
+</div>
+
+</body>
+</html>
